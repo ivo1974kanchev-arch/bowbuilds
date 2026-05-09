@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bowbuilds — Build Your Perfect Compound Bow Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 40%, #111827 100%);
+      min-height: 100vh;
+      color: #e2e8f0;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .glass-nav {
+      background: rgba(10, 10, 15, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #6366f1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .accent-glow {
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.35), 0 0 80px rgba(99, 102, 241, 0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .hero-mockup {
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(79,70,229,0.04) 100%);
+      border: 1px solid rgba(99,102,241,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mockup::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .hero-mockup::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+
+    .pricing-popular {
+      border-color: rgba(99,102,241,0.5);
+      background: rgba(99,102,241,0.07);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-content.open {
+      max-height: 300px;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .logo-bar-item {
+      color: rgba(148,163,184,0.5);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent);
+    }
+
+    .feature-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .before-after-card {
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .before-card {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.15);
+    }
+
+    .after-card {
+      background: rgba(99,102,241,0.05);
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    .tag-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .waitlist-section {
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(79,70,229,0.04) 100%);
+      border-top: 1px solid rgba(99,102,241,0.15);
+      border-bottom: 1px solid rgba(99,102,241,0.15);
+    }
+
+    input[type="email"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="email"]:focus {
+      border-color: rgba(99,102,241,0.6);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+    input[type="email"]::placeholder {
+      color: rgba(148,163,184,0.5);
+    }
+
+    .check-icon {
+      color: #6366f1;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     NAV
+============================= -->
+<nav class="glass-nav sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div style="width:32px;height:32px;background:linear-gradient(135deg,#6366f1,#4f46e5);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:1rem;">🏹</span>
+      </div>
+      <span class="font-700 text-white text-lg tracking-tight" style="font-weight:700;">bowbuilds</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#features" class="text-slate-400 hover:text-white transition-colors text-sm font-medium">Features</a>
+      <a href="#pricing" class="text-slate-400 hover:text-white transition-colors text-sm font-medium">Pricing</a>
+      <a href="#faq" class="text-slate-400 hover:text-white transition-colors text-sm font-medium">FAQ</a>
+    </div>
+    <a href="#waitlist" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-lg">
+      Join Waitlist
+    </a>
+  </div>
+</nav>
+
+<!-- ============================
+     HERO
+============================= -->
+<section class="relative pt-28 pb-24 px-6 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.18) 0%, transparent 70%);"></div>
+
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="tag-badge bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6 fade-up">
+        ⚡ Now accepting early access
+      </div>
+      <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tight mb-6 fade-up fade-up-delay-1" style="line-height:1.05;">
+        <span class="gradient-text">Stop Guessing.</span><br/>
+        <span class="text-white">Build Your Compound Bow</span><br/>
+        <span class="gradient-text">Setup Right the First Time.</span>
+      </h1>
+      <p class="text-slate-400 text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed mb-10 fade-up fade-up-delay-2">
+        Bowbuilds gives compound archers a step-by-step configurator and precision tuning toolkit — so every component choice and tuning adjustment is backed by <span class="text-slate-200 font-medium">real data</span>, not forum guesswork.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up fade-up-delay-3">
+        <a href="#waitlist" class="btn-primary text-white font-semibold px-8 py-4 rounded-xl text-base accent-glow">
+          Build My Setup Free →
+        </a>
+        <a href="#features" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-medium py-4 px-2">
+          <span class="w-9 h-9 rounded-full border border-slate-600 flex items-center justify-center text-sm">▶</span>
+          See how it works
+        </a>
+      </div>
+      <p class="text-slate-500 text-sm mt-6 fade-up fade-up-delay-3">Join early adopters on the waitlist · No credit card required</p>
+    </div>
+
+    <!-- Hero Mockup -->
+    <div class="hero-mockup rounded-2xl h-80 md:h-[420px] max-w-5xl mx-auto accent-glow fade-up" style="position:relative;">
+      <!-- Mockup UI elements -->
+      <div class="absolute top-6 left-6 right-6 z-10">
+        <div class="glass-card rounded-xl p-4 flex items-center justify-between mb-4" style="background:rgba(15,15,26,0.85);">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-sm">🎯</div>
+            <div>
+              <div class="text-white text-sm font-semibold">Hoyt Carbon RX-8 Ultra</div>
+              <div class="text-slate-500 text-xs">Draw: 29" · 70 lbs · 27.5" ATA</div>
+            </div>
+          </div>
+          <div class="text-xs font-semibold px-3 py-1 rounded-full" style="background:rgba(99,102,241,0.2);color:#a5b4fc;">✓ Compatible</div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="glass-card rounded-lg p-3" style="background:rgba(15,15,26,0.75);">
+            <div class="text-slate-500 text-xs mb-1">Cam System</div>
+            <div class="text-white text-sm font-semibold">HP Cam</div>
+            <div class="h-1 rounded-full mt-2" style="background:linear-gradient(90deg,#6366f1,#4f46e5);width:80%;"></div>
+          </div>
+          <div class="glass-card rounded-lg p-3" style="background:rgba(15,15,26,0.75);">
+            <div class="text-slate-500 text-xs mb-1">Rest Type</div>
+            <div class="text-white text-sm font-semibold">Drop-Away</div>
+            <div class="h-1 rounded-full mt-2" style="background:linear-gradient(90deg,#6366f1,#4f46e5);width:60%;"></div>
+          </div>
+          <div class="glass-card rounded-lg p-3" style="background:rgba(15,15,26,0.75);">
+            <div class="text-slate-500 text-xs mb-1">Arrow Spine</div>
+            <div class="text-white text-sm font-semibold">.350 Match</div>
+            <div class="h-1 rounded-full mt-2" style="background:linear-gradient(90deg,#22c55e,#16a34a);width:95%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line max-w-6xl mx-auto"></div>
+
+<!-- ============================
+     PROBLEM — Before / After
+============================= -->
+<section id="problem" class="py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <div class="tag-badge bg-red-500/10 text-red-400 border border-red-500/20 mb-4">The Real Cost of Guessing</div>
+      <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-5">The old way vs. our way</h2>
+      <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+        "I spent $300 on arrows that were wrong for my setup because there was no tool to check compatibility before buying." — Sound familiar?
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Before -->
+      <div class="before-card before-after-card fade-up">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-2xl">😤</span>
+          <h3 class="text-red-400 font-bold text-lg tracking-tight">The Old Way</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex gap-3">
+            <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Spend hours across Reddit threads, YouTube videos, and pro shop guesswork just to figure out which arrows might work with your setup.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Order $300 worth of components only to discover incompatibility issues after the fact — no refunds, no recourse.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Shoot terrible groups for months because your paper tuning is off and nobody can agree on a fix that matches your exact cam and draw setup.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Show up to your pro shop with zero documentation — can't remember what you changed last time or why.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-red-500 mt-0.5 flex-shrink-0">✗</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Repeat the entire process every time you upgrade a component or change draw weight.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- After -->
+      <div class="after-card before-after-card fade-up fade-up-delay-1">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-2xl">🏹</span>
+          <h3 class="text-indigo-400 font-bold text-lg tracking-tight">The Bowbuilds Way</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex gap-3">
+            <span class="text-indigo-400 mt-0.5 flex-shrink-0">✓</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Configure your exact bow, cam, draw length, and draw weight — get a full compatibility check before you spend a single dollar.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 mt-0.5 flex-shrink-0">✓</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Receive a matched arrow spine recommendation and accessory compatibility list specific to your build — not generic forum advice.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 mt-0.5 flex-shrink-0">✓</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Diagnose paper tears and get step-by-step fix instructions tailored to your exact cam timing and nocking point — fixed in one session.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 mt-0.5 flex-shrink-0">✓</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Share a live build URL with your pro shop or coach so everyone works from the same ground truth — no miscommunication.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-indigo-400 mt-0.5 flex-shrink-0">✓</span>
+            <span class="text-slate-300 text-sm leading-relaxed">Track every change in your build history and see exactly what you adjusted, when, and why — your setup is never a mystery again.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line max-w-6xl mx-auto"></div>
+
+<!-- ============================
+     FEATURES
+============================= -->
+<section id="features" class="py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <div class="tag-badge bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">Built for Precision</div>
+      <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-5">
+        Everything your setup demands
+      </h2>
+      <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+        Three precision tools, purpose-built for serious compound archers who refuse to leave performance on the table.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Feature 1 -->
+      <div class="glass-card rounded-2xl p-8 fade-up" style="transition-delay:0.05s;">
+        <div class="feature-icon-wrap">🔧</div>
+        <h3 class="text-white font-bold text-xl mb-3 tracking-tight">Bow Configurator</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">
+          Select your cam, draw length, draw weight, and accessories to generate a complete, shareable build card with live compatibility checks. No more buying components that don't work together.
+        </p>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-slate-400 text-xs"><span class="check-icon">✦</span> Cam & draw weight matching</div>
+          <div class="flex items-center gap-2 text-slate-400 text-xs"><span class="check-icon">✦</span> Arrow spine calculator</div>
+          <div class="flex items-center gap-2 text-slate-400 text-xs"><span class="check-icon">✦</span> Shareable public build card</div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="glass-card rounded-2xl p-8 fade-up" style="transition-delay:0.15s;border-color:rgba(99,102,241,0.2);">
+        <div class="feature-icon-wrap">🎯</div>
+        <h3 class="text-white font-
